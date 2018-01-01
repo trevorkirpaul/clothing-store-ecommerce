@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { connectSignIn } from '../../actions/auth';
+import { signIn } from '../../actions/auth';
 
 const Wrapper = styled.div`
   margin: 10px auto;
@@ -70,7 +70,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signIn: (email, password) => dispatch(connectSignIn(email, password)),
+  signIn: (email, password) => dispatch(signIn(email, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

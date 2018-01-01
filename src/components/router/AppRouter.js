@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Header from '../header/Header';
+import Header from '../header/HeaderContainer';
+
 import Welcome from '../welcome/Welcome';
 import SignIn from '../sign_in/SignIn';
 import SignInConfirm from '../confirmations/SignInConfirm';
