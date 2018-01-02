@@ -8,3 +8,4 @@ export const API = {
 
 export const SIGN_IN = `${url}/api/users/signin`;
 export const TOKEN = `${url}/`;
+export const CART_GET = `${url}/api/cart`;

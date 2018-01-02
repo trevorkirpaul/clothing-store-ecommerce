@@ -9,20 +9,30 @@ const Wrapper = styled.div`
 `;
 
 export default ({ loggedIn }) => {
-  return (
-    <Wrapper>
-      <Link to="/">
-        <span>home</span>
-      </Link>
-      {!loggedIn ? (
+  if (!loggedIn) {
+    return (
+      <Wrapper>
+        <Link to="/">
+          <span>home</span>
+        </Link>
         <Link to="/signin">
           <span>Sign In</span>
         </Link>
-      ) : (
+      </Wrapper>
+    );
+  } else if (loggedIn) {
+    return (
+      <Wrapper>
+        <Link to="/">
+          <span>home</span>
+        </Link>
         <Link to="/signout">
           <span>Sign Out</span>
         </Link>
-      )}
-    </Wrapper>
-  );
+        <Link to="/cart">
+          <span>Shopping Cart</span>
+        </Link>
+      </Wrapper>
+    );
+  }
 };
