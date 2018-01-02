@@ -4,6 +4,7 @@ import configureStore from './store/configureStore';
 import AppRouter from './components/router/AppRouter';
 import { tokenAuth } from './actions/auth';
 import { getCart } from './actions/cart';
+import { getAllProducts } from './actions/products';
 
 const store = configureStore();
 
@@ -14,6 +15,7 @@ class App extends Component {
     if (token) {
       store.dispatch(tokenAuth(token));
       store.dispatch(getCart(token));
+      store.dispatch(getAllProducts());
     }
   }
   render() {

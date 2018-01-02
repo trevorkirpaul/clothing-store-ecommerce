@@ -7,7 +7,7 @@ export default ({ cart }) => {
         <p>loading cart...</p>
       </div>
     );
-  } else if (cart.loading === false) {
+  } else if (cart.contents) {
     return (
       <div>
         <p>Items in cart: {cart.contents.length}</p>

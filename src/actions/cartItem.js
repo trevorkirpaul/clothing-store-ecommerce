@@ -1,26 +1,20 @@
 import axios from 'axios';
-import { CART_GET } from '../config';
+import { CART_ADD } from '../config';
 
-const tokenObject = {
-  headers: {
-    authorization: localStorage.getItem('token'),
-  },
-};
-
-export const getCart = token => {
+export const addItem = item => {
   return dispatch => {
     dispatch({
-      type: 'CART:LOAD_CART',
+      type: 'CART:START_TRANSACTION',
       loading: true,
     });
     axios
-      .get(CART_GET, tokenObject)
+      .post(CART_ADD, { item })
       .then(({ data }) => {
         dispatch({
-          type: 'CART:RECIEVE_CART',
+          type: 'CART:ADD_ITEM',
           loading: false,
           error: false,
-          contents: data.cart,
+          message: data.message,
         });
       })
       .catch(err => {

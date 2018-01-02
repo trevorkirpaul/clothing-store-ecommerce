@@ -23,7 +23,7 @@ export const tokenAuth = token => {
           auth: {
             loading: false,
             token: localStorage.getItem('token'),
-            user: data.user,
+            id: data.user._id,
           },
         });
       })

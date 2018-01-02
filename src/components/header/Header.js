@@ -15,6 +15,9 @@ export default ({ loggedIn }) => {
         <Link to="/">
           <span>home</span>
         </Link>
+        <Link to="/products">
+          <span>Products</span>
+        </Link>
         <Link to="/signin">
           <span>Sign In</span>
         </Link>
@@ -25,6 +28,9 @@ export default ({ loggedIn }) => {
       <Wrapper>
         <Link to="/">
           <span>home</span>
+        </Link>
+        <Link to="/products">
+          <span>Products</span>
         </Link>
         <Link to="/signout">
           <span>Sign Out</span>

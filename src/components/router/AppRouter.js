@@ -5,6 +5,7 @@ import Header from '../header/HeaderContainer';
 
 import Cart from '../cart/CartContainer';
 import Welcome from '../welcome/Welcome';
+import Products from '../products/ProductsContainer';
 import SignIn from '../sign_in/SignIn';
 import SignInConfirm from '../confirmations/SignInConfirm';
 import SignOutConfirm from '../confirmations/SignOutConfirm';
@@ -20,6 +21,7 @@ export default () => {
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/products" component={Products} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signout" component={CheckAuth(SignOut)} />
           <Route exact path="/confirm/signin" component={SignInConfirm} />
