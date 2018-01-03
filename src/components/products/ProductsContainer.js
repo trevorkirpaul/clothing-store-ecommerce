@@ -10,22 +10,7 @@ export class ProductsContainer extends Component {
       products: [],
     };
   }
-  handleAdd = (id, name) => {
-    // for testing purposes, create dummy cartItem info obj here
-    // leter on, user will choose options and app will create this obj
-    const userID = this.props.id;
 
-    const item = {
-      productName: name,
-      color: 'black',
-      size: 'large',
-      quantity: 2,
-      product: id,
-      userID,
-    };
-    console.log(item);
-    this.props.addItem(item);
-  };
   componentDidMount() {
     this.setState(() => ({
       products: this.props.products.items,
@@ -37,9 +22,7 @@ export class ProductsContainer extends Component {
     }));
   }
   render() {
-    return (
-      <Products products={this.state.products} handleAdd={this.handleAdd} />
-    );
+    return <Products products={this.state.products} />;
   }
 }
 

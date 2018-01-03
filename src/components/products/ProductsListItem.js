@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default ({ id, name, handleAdd }) => {
+export default ({ id, name }) => {
   return (
     <li>
-      <p>name: {name}</p>
-
-      <button onClick={() => handleAdd(id, name)}>Add to cart</button>
+      <Link to={`/product/${id}`}>
+        <p>name: {name}</p>
+      </Link>
     </li>
   );
 };

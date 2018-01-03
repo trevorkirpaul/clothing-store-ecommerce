@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import auth from '../reducers/auth';
 import cart from '../reducers/cart';
 import products from '../reducers/products';
+import product from '../reducers/productItem';
+import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -12,6 +14,8 @@ export default () => {
       auth,
       cart,
       products,
+      product,
+      form: formReducer,
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

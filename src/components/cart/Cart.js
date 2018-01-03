@@ -16,6 +16,9 @@ export default ({ cart, handleRemove }) => {
             <CartItem
               key={item._id}
               name={item.productName}
+              color={item.color}
+              size={item.size}
+              quantity={item.quantity}
               cartItemID={item._id}
               productID={item.product}
               handleRemove={handleRemove}
