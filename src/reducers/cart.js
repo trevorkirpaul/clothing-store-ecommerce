@@ -26,6 +26,14 @@ export default (state = defaultState, action) => {
         error: action.error,
         message: action.message,
       };
+    case 'CART:REMOVE_ITEM':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        message: action.message,
+        contents: action.contents,
+      };
     case 'CART:ERROR':
       return {
         ...state,
