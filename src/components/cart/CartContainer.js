@@ -4,11 +4,34 @@ import { getCart } from '../../actions/cart';
 import { removeItem } from '../../actions/cartItem';
 import Cart from './Cart';
 
-// export const Container = props => {
-//   return <Cart {...props} cart={props.cart} />;
-// };
+// function to calculate total price
+// arr.reduce() wouldn't work here for some reason
+const getTotal = arr => {
+  if (arr.length > 1) {
+    let total = 0;
+
+    arr.forEach(item => {
+      const price = item.product.price;
+      const quantity = item.quantity;
+      total += price * quantity;
+    });
+
+    return total;
+  } else if (arr.length === 1) {
+    return arr[0].product.price * arr[0].quantity;
+  } else {
+    return 0;
+  }
+};
 
 export class Container extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      total: 0,
+      cart: [],
+    };
+  }
   handleRemove = item => {
     const userID = this.props.userID;
     const itemObj = {
@@ -20,12 +43,21 @@ export class Container extends Component {
   componentDidMount() {
     this.props.getCart();
   }
+  componentWillReceiveProps(nextProps) {
+    const cart = nextProps.cart.contents;
+    if (cart !== undefined) {
+      this.setState(() => ({
+        total: getTotal(cart),
+      }));
+    }
+  }
+
   render() {
     return (
       <Cart
-        {...this.props}
         cart={this.props.cart}
         handleRemove={this.handleRemove}
+        total={this.state.total}
       />
     );
   }

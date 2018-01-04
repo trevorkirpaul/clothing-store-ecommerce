@@ -37,6 +37,7 @@ export class ProductItemContainer extends Component {
   };
   // for item add confirm dialog, goes to shopping cart
   handleViewCart = () => {
+    this.props.confirmItemAdded();
     this.props.history.push('/cart');
   };
   componentDidMount() {

@@ -1,7 +1,15 @@
 import React from 'react';
 import CartItem from './CartItem';
+import CartHeader from './CartHeader';
+import styled from 'styled-components';
 
-export default ({ cart, handleRemove }) => {
+const ListWrapper = styled.ul`
+  list-style: none;
+  max-width: 900px;
+  margin: 15px auto 15px auto;
+`;
+
+export default ({ cart, handleRemove, total }) => {
   if (cart.loading === true) {
     return (
       <div>
@@ -20,20 +28,23 @@ export default ({ cart, handleRemove }) => {
       // if items in cart
       return (
         <div>
-          <ul>
+          <CartHeader cart={cart.contents} total={total} />
+          <ListWrapper>
             {cart.contents.map(item => (
               <CartItem
                 key={item._id}
                 name={item.productName}
+                imagePath={item.product.imagePath}
                 color={item.color}
                 size={item.size}
+                price={item.product.price}
                 quantity={item.quantity}
                 cartItemID={item._id}
-                productID={item.product}
+                productID={item.product._id}
                 handleRemove={handleRemove}
               />
             ))}
-          </ul>
+          </ListWrapper>
         </div>
       );
     }
