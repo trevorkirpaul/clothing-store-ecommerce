@@ -11,6 +11,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         loading: action.loading,
+        itemAdded: action.itemAdded,
       };
     case 'CART:RECIEVE_CART':
       return {
@@ -23,6 +24,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         loading: action.loading,
+        itemAdded: action.itemAdded,
         error: action.error,
         message: action.message,
       };
@@ -39,6 +41,11 @@ export default (state = defaultState, action) => {
         ...state,
         loading: action.loading,
         error: action.error,
+      };
+    case 'CART:CONFIRM_ITEM_ADDED':
+      return {
+        ...state,
+        itemAdded: action.itemAdded,
       };
     default:
       return state;

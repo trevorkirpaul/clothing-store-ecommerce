@@ -6,6 +6,7 @@ export const addItem = item => {
     dispatch({
       type: 'CART:START_TRANSACTION',
       loading: true,
+      itemAdded: false,
     });
     axios
       .post(CART_ADD, { item })
@@ -13,6 +14,7 @@ export const addItem = item => {
         dispatch({
           type: 'CART:ADD_ITEM',
           loading: false,
+          itemAdded: true,
           error: false,
           message: data.message,
         });
@@ -51,5 +53,14 @@ export const removeItem = item => {
           error: err.response.data.error,
         });
       });
+  };
+};
+
+export const confirmItemAdded = () => {
+  return dispatch => {
+    dispatch({
+      type: 'CART:CONFIRM_ITEM_ADDED',
+      itemAdded: false,
+    });
   };
 };

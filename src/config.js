@@ -1,4 +1,4 @@
-const url = 'http://192.168.1.136:3001';
+const url = 'http://192.168.1.137:3001';
 
 export const API = {
   MAIN: `${url}`,
@@ -13,3 +13,4 @@ export const PROD_GET_ALL = `${url}/api/products`;
 export const CART_ADD = `${url}/api/cartItem/add`;
 export const CART_REMOVE = `${url}/api/cartItem/remove`;
 export const PROD_GET_ONE = `${url}/api/product`;
+export const PROD_IMAGE = `${url}/images/`;

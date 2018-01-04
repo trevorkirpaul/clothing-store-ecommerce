@@ -1,11 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
+
+const style = {
+  color: '#f8f8f8',
+};
 
 const Wrapper = styled.div`
-  padding: 25px;
-  margin: 10px auto;
-  max-width: 500px;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 5px;
+  background: #383838;
 `;
 
 export default ({ loggedIn }) => {
@@ -13,13 +19,13 @@ export default ({ loggedIn }) => {
     return (
       <Wrapper>
         <Link to="/">
-          <span>home</span>
+          <FlatButton label="Dirty Rich" />
         </Link>
         <Link to="/products">
-          <span>Products</span>
+          <FlatButton label="Products" style={style} />
         </Link>
         <Link to="/signin">
-          <span>Sign In</span>
+          <FlatButton label="Sign In" style={style} />
         </Link>
       </Wrapper>
     );
@@ -27,16 +33,16 @@ export default ({ loggedIn }) => {
     return (
       <Wrapper>
         <Link to="/">
-          <span>home</span>
+          <FlatButton label="Dirty Rich" style={style} />
         </Link>
         <Link to="/products">
-          <span>Products</span>
+          <FlatButton label="Products" style={style} />
         </Link>
         <Link to="/signout">
-          <span>Sign Out</span>
+          <FlatButton label="Sign Out" style={style} />
         </Link>
         <Link to="/cart">
-          <span>Shopping Cart</span>
+          <FlatButton label="Shopping Cart" style={style} />
         </Link>
       </Wrapper>
     );

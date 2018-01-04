@@ -5,6 +5,7 @@ import AppRouter from './components/router/AppRouter';
 import { tokenAuth } from './actions/auth';
 import { getCart } from './actions/cart';
 import { getAllProducts } from './actions/products';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const store = configureStore();
 
@@ -21,7 +22,9 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppRouter />
+        <MuiThemeProvider>
+          <AppRouter />
+        </MuiThemeProvider>
       </Provider>
     );
   }

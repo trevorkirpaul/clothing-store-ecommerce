@@ -9,24 +9,34 @@ export default ({ cart, handleRemove }) => {
       </div>
     );
   } else if (cart.contents) {
-    return (
-      <div>
-        <ul>
-          {cart.contents.map(item => (
-            <CartItem
-              key={item._id}
-              name={item.productName}
-              color={item.color}
-              size={item.size}
-              quantity={item.quantity}
-              cartItemID={item._id}
-              productID={item.product}
-              handleRemove={handleRemove}
-            />
-          ))}
-        </ul>
-      </div>
-    );
+    if (cart.contents.length === 0) {
+      // if no items in cart
+      return (
+        <div>
+          <p>No items in cart :(</p>
+        </div>
+      );
+    } else if (cart.contents.length > 0) {
+      // if items in cart
+      return (
+        <div>
+          <ul>
+            {cart.contents.map(item => (
+              <CartItem
+                key={item._id}
+                name={item.productName}
+                color={item.color}
+                size={item.size}
+                quantity={item.quantity}
+                cartItemID={item._id}
+                productID={item.product}
+                handleRemove={handleRemove}
+              />
+            ))}
+          </ul>
+        </div>
+      );
+    }
   } else {
     return (
       <div>
