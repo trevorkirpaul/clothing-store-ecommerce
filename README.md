@@ -49,3 +49,9 @@ Other than that issue, the overall dev process has been fine. I'm really not try
 I just need to add the feature to complete and submit an order and I also want to set up the backend to send a confirmation email on orders (as well as sign ups).
 
 Order history is another feature but that will be pretty simple.
+
+### Quick update:
+
+I just circumvented using the redundant second layer of `Product` and directly saved the price and quantity on the the `CartItem` model iteself. I'm no longer having any issues and I now feel like it's correclty solved.
+
+I still can't get the array method `reduce()` to work but the forEach loop works.

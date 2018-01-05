@@ -11,14 +11,14 @@ const getTotal = arr => {
     let total = 0;
 
     arr.forEach(item => {
-      const price = item.product.price;
+      const price = item.price;
       const quantity = item.quantity;
       total += price * quantity;
     });
 
     return total;
   } else if (arr.length === 1) {
-    return arr[0].product.price * arr[0].quantity;
+    return arr[0].price * arr[0].quantity;
   } else {
     return 0;
   }
@@ -30,6 +30,8 @@ export class Container extends Component {
     this.state = {
       total: 0,
       cart: [],
+      shippingOption: '',
+      discount: 0,
     };
   }
   handleRemove = item => {
@@ -40,11 +42,23 @@ export class Container extends Component {
     };
     this.props.removeItem(itemObj);
   };
+  // shipping
+  handleSelectShipping = (e, i, val) => {
+    const shippingOption = val;
+    this.setState(() => ({
+      shippingOption,
+    }));
+  };
+  // discount
+  handleDiscount = amount => {
+    console.log('discount:', amount);
+  };
   componentDidMount() {
     this.props.getCart();
   }
   componentWillReceiveProps(nextProps) {
     const cart = nextProps.cart.contents;
+
     if (cart !== undefined) {
       this.setState(() => ({
         total: getTotal(cart),
@@ -58,6 +72,9 @@ export class Container extends Component {
         cart={this.props.cart}
         handleRemove={this.handleRemove}
         total={this.state.total}
+        handleSelectShipping={this.handleSelectShipping}
+        shippingOption={this.state.shippingOption}
+        handleDiscount={this.handleDiscount}
       />
     );
   }

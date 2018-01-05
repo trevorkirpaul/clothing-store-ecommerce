@@ -19,11 +19,15 @@ export class ProductItemContainer extends Component {
     const userID = this.props.userID;
     const productName = this.props.product.name;
     const product = this.props.product._id;
+    const price = this.props.product.price;
+    const imagePath = this.props.product.imagePath;
     const item = {
       ...values,
       productName,
       product,
       userID,
+      price,
+      imagePath,
     };
 
     this.props.addItem(item);

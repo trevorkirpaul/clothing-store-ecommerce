@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 
 const Wrapper = styled.div``;
 const ListWrapper = styled.ul`
-  padding: 25px;
+  padding: 5px;
   max-width: 900px;
   margin: 10px auto;
   list-style: none;
@@ -18,8 +18,10 @@ const Panel = styled(Paper)`
   text-align: center;
 `;
 const Title = styled.h1`
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Permanent Marker', cursive;
   font-weight: 400;
+  color: #383838;
   font-size: 3em;
   margin: 0;
 `;
