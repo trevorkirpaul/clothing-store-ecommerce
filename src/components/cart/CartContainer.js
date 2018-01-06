@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCart } from '../../actions/cart';
+import { getCart, checkPromoCode } from '../../actions/cart';
 import { removeItem } from '../../actions/cartItem';
 import Cart from './Cart';
+import CartHeader from './CartHeader';
+import Shipping from './Shipping';
+import DiscountCode from './DiscountCode';
+import CartFooter from './CartFooter';
 
 // function to calculate total price
 // arr.reduce() wouldn't work here for some reason
@@ -31,7 +35,10 @@ export class Container extends Component {
       total: 0,
       cart: [],
       shippingOption: '',
-      discount: 0,
+      discount: {
+        codePhrase: null,
+        amount: 0,
+      },
     };
   }
   handleRemove = item => {
@@ -50,32 +57,40 @@ export class Container extends Component {
     }));
   };
   // discount
-  handleDiscount = amount => {
-    console.log('discount:', amount);
+  handleDiscount = codePhrase => {
+    const userID = this.props.userID;
+    this.props.checkPromoCode(codePhrase, userID);
   };
   componentDidMount() {
     this.props.getCart();
   }
   componentWillReceiveProps(nextProps) {
     const cart = nextProps.cart.contents;
-
+    const discount = nextProps.cart.discount;
     if (cart !== undefined) {
       this.setState(() => ({
+        cart,
         total: getTotal(cart),
+        discount,
       }));
     }
   }
 
   render() {
     return (
-      <Cart
-        cart={this.props.cart}
-        handleRemove={this.handleRemove}
-        total={this.state.total}
-        handleSelectShipping={this.handleSelectShipping}
-        shippingOption={this.state.shippingOption}
-        handleDiscount={this.handleDiscount}
-      />
+      <div>
+        <CartHeader cart={this.state.cart} total={this.state.total} />
+        <Cart cart={this.props.cart} handleRemove={this.handleRemove} />
+        <Shipping
+          handleSelectShipping={this.handleSelectShipping}
+          shippingOption={this.state.shippingOption}
+        />
+        <DiscountCode
+          handleDiscount={this.handleDiscount}
+          info={this.state.discount}
+        />
+        <CartFooter total={this.state.total} discount={this.state.discount} />
+      </div>
     );
   }
 }
@@ -88,6 +103,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getCart: () => dispatch(getCart()),
   removeItem: item => dispatch(removeItem(item)),
+  checkPromoCode: (codePhrase, userID) =>
+    dispatch(checkPromoCode(codePhrase, userID)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container);

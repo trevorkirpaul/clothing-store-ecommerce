@@ -19,6 +19,7 @@ export default (state = defaultState, action) => {
         loading: action.loading,
         error: action.error,
         contents: action.contents,
+        discount: action.discount,
       };
     case 'CART:ADD_ITEM':
       return {
@@ -35,6 +36,21 @@ export default (state = defaultState, action) => {
         error: action.error,
         message: action.message,
         contents: action.contents,
+      };
+    case 'CART:CHECKING_PROMO_CODE':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        message: action.message,
+      };
+    case 'CART:RECIEVE_PROMO_CODE':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        message: action.message,
+        discount: action.discount,
       };
     case 'CART:ERROR':
       return {

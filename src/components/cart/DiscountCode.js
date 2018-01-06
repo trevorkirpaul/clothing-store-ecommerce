@@ -23,6 +23,7 @@ export default class DiscountCode extends Component {
     super(props);
     this.state = {
       codePhrase: '',
+      amount: 0,
       message: '',
     };
   }
@@ -35,7 +36,21 @@ export default class DiscountCode extends Component {
       codePhrase,
     }));
   };
+  componentDidMount() {
+    // check if there is a valid code already
+  }
+  componentWillReceiveProps(nextProps) {
+    const codePhrase = nextProps.info.codePhrase;
+    const amount = nextProps.info.amount;
+    if (codePhrase !== null) {
+      this.setState(() => ({
+        codePhrase,
+        amount,
+      }));
+    }
+  }
   render() {
+    const { codePhrase, amount } = this.state;
     return (
       <Wrapper>
         <div>
@@ -44,11 +59,20 @@ export default class DiscountCode extends Component {
         </div>
         <div>
           <div>
-            <TextField
-              hintText="enter code"
-              onChange={this.handleChangeCodePhrase}
-            />
-            <FlatButton label="check" onClick={this.handleSubmit} />
+            {codePhrase ? (
+              <div>
+                <p>valid code being used: {codePhrase}</p>
+                <p>discount amount: {amount * 100}%</p>
+              </div>
+            ) : (
+              <div>
+                <TextField
+                  hintText="enter code"
+                  onChange={this.handleChangeCodePhrase}
+                />
+                <FlatButton label="check" onClick={this.handleSubmit} />
+              </div>
+            )}
           </div>
         </div>
       </Wrapper>
