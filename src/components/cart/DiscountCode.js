@@ -23,12 +23,13 @@ export default class DiscountCode extends Component {
     super(props);
     this.state = {
       codePhrase: '',
-      amount: 0,
+      amount: 1,
       message: '',
     };
   }
   handleSubmit = () => {
-    this.props.handleDiscount(this.state.codePhrase);
+    const codePhrase = this.state.codePhrase;
+    codePhrase !== '' && this.props.handleDiscount(codePhrase);
   };
   handleChangeCodePhrase = e => {
     const codePhrase = e.target.value;
@@ -36,9 +37,14 @@ export default class DiscountCode extends Component {
       codePhrase,
     }));
   };
-  componentDidMount() {
-    // check if there is a valid code already
-  }
+  handleRemoveCode = () => {
+    this.setState(() => ({
+      codePhrase: '',
+      amount: 1,
+    }));
+    this.props.handleRemove();
+  };
+
   componentWillReceiveProps(nextProps) {
     const codePhrase = nextProps.info.codePhrase;
     const amount = nextProps.info.amount;
@@ -47,6 +53,11 @@ export default class DiscountCode extends Component {
         codePhrase,
         amount,
       }));
+    } else if (codePhrase === null) {
+      this.setState({
+        amount: 1,
+        codePhrase: '',
+      });
     }
   }
   render() {
@@ -59,10 +70,14 @@ export default class DiscountCode extends Component {
         </div>
         <div>
           <div>
-            {codePhrase ? (
+            {amount !== 1 ? (
               <div>
                 <p>valid code being used: {codePhrase}</p>
                 <p>discount amount: {amount * 100}%</p>
+                <FlatButton
+                  label="remove code"
+                  onClick={this.handleRemoveCode}
+                />
               </div>
             ) : (
               <div>

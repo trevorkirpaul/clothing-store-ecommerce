@@ -15,3 +15,4 @@ export const CART_REMOVE = `${url}/api/cartItem/remove`;
 export const PROD_GET_ONE = `${url}/api/product`;
 export const PROD_IMAGE = `${url}/images/`;
 export const CHECK_CODE = `${url}/api/promo-code`;
+export const REMOVE_CODE = `${url}/api/promo-remove`;

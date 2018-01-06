@@ -9,15 +9,23 @@ const Wrapper = styled.div`
   justify-content: space-around;
 `;
 
-export default ({ total }) => {
+export default ({ total, discount, shipping }) => {
+  // check if discount code is valid or exists
+  const modifyPrice = discount.codePhrase === null ? 1 : discount.amount;
   return (
     <Wrapper>
       <div>
         <h3>ESTIMATION:</h3>
         <p>order: ${total}</p>
+        {discount.codePhrase !== null && (
+          <p>
+            discount code: {discount.codePhrase} for {discount.amount * 100}%
+          </p>
+        )}
+        {shipping !== '' && <p>shipping: {shipping}</p>}
       </div>
       <div>
-        <h3>Total: ${total}</h3>
+        <h3>Total: ${total * modifyPrice}</h3>
         <RaisedButton label="Proceed to checkout" />
       </div>
     </Wrapper>

@@ -52,6 +52,14 @@ export default (state = defaultState, action) => {
         message: action.message,
         discount: action.discount,
       };
+    case 'CART:REMOVE_PROMO_CODE':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        message: action.message,
+        discount: action.discount,
+      };
     case 'CART:ERROR':
       return {
         ...state,

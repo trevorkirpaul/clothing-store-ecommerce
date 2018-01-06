@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CART_GET, CHECK_CODE } from '../config';
+import { CART_GET, CHECK_CODE, REMOVE_CODE } from '../config';
 
 const tokenObject = {
   headers: {
@@ -47,6 +47,38 @@ export const checkPromoCode = (codePhrase, userID) => {
       .then(({ data }) => {
         dispatch({
           type: 'CART:RECIEVE_PROMO_CODE',
+          loading: false,
+          error: false,
+          message: data.message,
+          discount: {
+            codePhrase: data.codePhrase,
+            amount: data.amount,
+          },
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: 'CART:ERROR',
+          error: true,
+          loading: false,
+        });
+      });
+  };
+};
+
+export const removePromoCode = userID => {
+  return dispatch => {
+    dispatch({
+      type: 'CART:CHECKING_PROMO_CODE',
+      loading: true,
+      error: false,
+      message: 'Removing promo code from server...',
+    });
+    axios
+      .post(REMOVE_CODE, { userID })
+      .then(({ data }) => {
+        dispatch({
+          type: 'CART:REMOVE_PROMO_CODE',
           loading: false,
           error: false,
           message: data.message,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCart, checkPromoCode } from '../../actions/cart';
+import { getCart, checkPromoCode, removePromoCode } from '../../actions/cart';
 import { removeItem } from '../../actions/cartItem';
 import Cart from './Cart';
 import CartHeader from './CartHeader';
@@ -37,7 +37,8 @@ export class Container extends Component {
       shippingOption: '',
       discount: {
         codePhrase: null,
-        amount: 0,
+        amount: 1,
+        validCode: false,
       },
     };
   }
@@ -60,6 +61,17 @@ export class Container extends Component {
   handleDiscount = codePhrase => {
     const userID = this.props.userID;
     this.props.checkPromoCode(codePhrase, userID);
+  };
+  handleRemoveDiscount = () => {
+    const userID = this.props.userID;
+    this.setState(() => ({
+      discount: {
+        codePhrase: null,
+        amount: 1,
+        validCode: false,
+      },
+    }));
+    this.props.removePromoCode(userID);
   };
   componentDidMount() {
     this.props.getCart();
@@ -88,8 +100,13 @@ export class Container extends Component {
         <DiscountCode
           handleDiscount={this.handleDiscount}
           info={this.state.discount}
+          handleRemove={this.handleRemoveDiscount}
         />
-        <CartFooter total={this.state.total} discount={this.state.discount} />
+        <CartFooter
+          total={this.state.total}
+          discount={this.state.discount}
+          shipping={this.state.shippingOption}
+        />
       </div>
     );
   }
@@ -105,6 +122,7 @@ const mapDispatchToProps = dispatch => ({
   removeItem: item => dispatch(removeItem(item)),
   checkPromoCode: (codePhrase, userID) =>
     dispatch(checkPromoCode(codePhrase, userID)),
+  removePromoCode: userID => dispatch(removePromoCode(userID)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container);
