@@ -14,6 +14,7 @@ import SignOutConfirm from '../confirmations/SignOutConfirm';
 import SignOut from '../sign_out/SignOut';
 import NotFound from '../notFound/NotFound';
 import CheckAuth from '../HoC/CheckAuth';
+import VerifyShippingExists from '../HoC/VerifyShippingExists';
 
 export default () => {
   return (
@@ -23,7 +24,11 @@ export default () => {
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/cart" component={Cart} />
-          <Route exact path="/checkout" component={Checkout} />
+          <Route
+            exact
+            path="/checkout"
+            component={VerifyShippingExists(Checkout)}
+          />
           <Route exact path="/products" component={Products} />
           <Route exact path="/product/:id" component={Product} />
           <Route exact path="/signin" component={SignIn} />

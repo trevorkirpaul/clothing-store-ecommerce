@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CHECKOUT } from '../config';
 
-export const create = ({ userID, cartItems, discount }) => {
+export const create = ({ userID, cartItems, discount, shipping }) => {
   return dispatch => {
     dispatch({
       type: 'CHECKOUT:LOADING',
@@ -9,13 +9,14 @@ export const create = ({ userID, cartItems, discount }) => {
       error: false,
     });
     axios
-      .post(CHECKOUT, { userID, cartItems, discount })
+      .post(CHECKOUT, { userID, cartItems, discount, shipping })
       .then(({ data }) => {
         dispatch({
           type: 'CHECKOUT:CREATE_ORDER',
           message: data.message,
           order: data.order,
           error: false,
+          loading: false,
         });
       })
       .catch(() => {
@@ -27,3 +28,8 @@ export const create = ({ userID, cartItems, discount }) => {
       });
   };
 };
+
+export const clear = () => ({
+  type: 'CHECKOUT:CLIENT_CONFIRM',
+  order: null,
+});

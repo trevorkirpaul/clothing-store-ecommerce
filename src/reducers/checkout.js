@@ -16,6 +16,11 @@ export default (state = defaultState, action) => {
         message: action.message,
         order: action.order,
       };
+    case 'CHECKOUT:CLIENT_CONFIRM':
+      return {
+        ...state,
+        order: action.order,
+      };
     case 'CHECKOUT:ERROR':
       return {
         ...state,

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   padding: 25px;
@@ -17,7 +18,9 @@ export default ({ handleSubmit }) => {
     <Wrapper>
       <Panel>
         <RaisedButton label="Submit Order" onClick={handleSubmit} />
-        <RaisedButton label="Go Back" />
+        <Link to="/cart">
+          <RaisedButton label="Go Back" />
+        </Link>
       </Panel>
     </Wrapper>
   );
