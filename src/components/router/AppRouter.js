@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from '../header/HeaderContainer';
 
 import Cart from '../cart/CartContainer';
+import Checkout from '../checkout/CheckoutContainer';
 import Welcome from '../welcome/Welcome';
 import Products from '../products/ProductsContainer';
 import Product from '../productItem/ProductItemContainer';
@@ -22,6 +23,7 @@ export default () => {
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/products" component={Products} />
           <Route exact path="/product/:id" component={Product} />
           <Route exact path="/signin" component={SignIn} />

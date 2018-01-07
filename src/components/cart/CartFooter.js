@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   background: #9e9e9e;
@@ -26,7 +27,9 @@ export default ({ total, discount, shipping }) => {
       </div>
       <div>
         <h3>Total: ${total * modifyPrice}</h3>
-        <RaisedButton label="Proceed to checkout" />
+        <Link to="/checkout">
+          <RaisedButton label="Proceed to checkout" />
+        </Link>
       </div>
     </Wrapper>
   );
