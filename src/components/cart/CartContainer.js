@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCart, checkPromoCode, removePromoCode } from '../../actions/cart';
+import {
+  getCart,
+  checkPromoCode,
+  removePromoCode,
+  getShippingOptions,
+  setShipping,
+} from '../../actions/cart';
 import { removeItem } from '../../actions/cartItem';
 import Cart from './Cart';
 import CartHeader from './CartHeader';
@@ -28,13 +34,15 @@ const getTotal = arr => {
   }
 };
 
-export class Container extends Component {
+export class CartContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       total: 0,
       cart: [],
-      shippingOption: '',
+      shippingOptions: [{ name: '' }],
+      shippingOption: {},
+      shippingOptionName: '',
       discount: {
         codePhrase: null,
         amount: 1,
@@ -52,10 +60,17 @@ export class Container extends Component {
   };
   // shipping
   handleSelectShipping = (e, i, val) => {
-    const shippingOption = val;
+    // pull index from selectbox, pass object found to cartfooter
+    // state.shippingOptionName saves the val(index) so
+    // we can return that to teh select box
+    // to display the current option
+    const options = this.props.cart.shippingOptions;
+    const opt = { ...options[val], index: val };
     this.setState(() => ({
-      shippingOption,
+      shippingOptionName: val,
     }));
+    // dispatch option to redux
+    this.props.setShipping(opt);
   };
   // discount
   handleDiscount = codePhrase => {
@@ -75,15 +90,20 @@ export class Container extends Component {
   };
   componentDidMount() {
     this.props.getCart();
+    this.props.getShippingOptions();
   }
   componentWillReceiveProps(nextProps) {
     const cart = nextProps.cart.contents;
     const discount = nextProps.cart.discount;
+    const shippingOptions = nextProps.cart.shippingOptions;
+    const shippingOption = nextProps.cart.shippingOption;
     if (cart !== undefined) {
       this.setState(() => ({
         cart,
         total: getTotal(cart),
         discount,
+        shippingOptions,
+        shippingOption,
       }));
     }
   }
@@ -95,7 +115,8 @@ export class Container extends Component {
         <Cart cart={this.props.cart} handleRemove={this.handleRemove} />
         <Shipping
           handleSelectShipping={this.handleSelectShipping}
-          shippingOption={this.state.shippingOption}
+          currentOpt={this.state.shippingOption}
+          options={this.state.shippingOptions}
         />
         <DiscountCode
           handleDiscount={this.handleDiscount}
@@ -123,6 +144,8 @@ const mapDispatchToProps = dispatch => ({
   checkPromoCode: (codePhrase, userID) =>
     dispatch(checkPromoCode(codePhrase, userID)),
   removePromoCode: userID => dispatch(removePromoCode(userID)),
+  getShippingOptions: () => dispatch(getShippingOptions()),
+  setShipping: option => dispatch(setShipping(option)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

@@ -60,6 +60,26 @@ export default (state = defaultState, action) => {
         message: action.message,
         discount: action.discount,
       };
+    case 'CART:LOADING_SHIPPING_OPTIONS':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        message: action.message,
+      };
+    case 'CART:RECIEVE_SHIPPING_OPTIONS':
+      return {
+        ...state,
+        loading: action.loading,
+        error: action.error,
+        message: action.message,
+        shippingOptions: action.options,
+      };
+    case 'CART:SELECT_SHIPPING_OPTION':
+      return {
+        ...state,
+        shippingOption: action.option,
+      };
     case 'CART:ERROR':
       return {
         ...state,

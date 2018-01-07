@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 export default ({ total, discount, shipping }) => {
   // check if discount code is valid or exists
   const modifyPrice = discount.codePhrase === null ? 1 : discount.amount;
+  const price = shipping ? shipping.price : 0;
   return (
     <Wrapper>
       <div>
@@ -23,10 +24,14 @@ export default ({ total, discount, shipping }) => {
             discount code: {discount.codePhrase} for {discount.amount * 100}%
           </p>
         )}
-        {shipping !== '' && <p>shipping: {shipping}</p>}
+        {shipping && (
+          <p>
+            shipping: {shipping.name} for ${shipping.price}
+          </p>
+        )}
       </div>
       <div>
-        <h3>Total: ${total * modifyPrice}</h3>
+        <h3>Final Price: ${total - total * modifyPrice + price}</h3>
         <Link to="/checkout">
           <RaisedButton label="Proceed to checkout" />
         </Link>

@@ -19,7 +19,7 @@ const Title = styled.h3`
   color: #383838;
 `;
 
-export default ({ handleSelectShipping, shippingOption }) => {
+export default ({ handleSelectShipping, options, currentOpt }) => {
   return (
     <Wrapper>
       <div>
@@ -31,12 +31,13 @@ export default ({ handleSelectShipping, shippingOption }) => {
       <div>
         <SelectField
           floatingLabelText="select shipping..."
-          value={shippingOption}
+          value={currentOpt && currentOpt.index}
           onChange={handleSelectShipping}
         >
-          <MenuItem value={'2 day'} primaryText="2 day" />
-          <MenuItem value={'teleport'} primaryText="Teleporter (instant)" />
-          <MenuItem value={'UPS 7 day'} primaryText="UPS 7 day" />
+          {options &&
+            options.map((item, index) => (
+              <MenuItem key={item.name} value={index} primaryText={item.name} />
+            ))}
         </SelectField>
       </div>
     </Wrapper>

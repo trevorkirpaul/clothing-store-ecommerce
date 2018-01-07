@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CART_GET, CHECK_CODE, REMOVE_CODE } from '../config';
+import { CART_GET, CHECK_CODE, REMOVE_CODE, SHIP_OPTIONS_GET } from '../config';
 
 const tokenObject = {
   headers: {
@@ -97,3 +97,39 @@ export const removePromoCode = userID => {
       });
   };
 };
+
+// get shipping options
+
+export const getShippingOptions = () => {
+  return dispatch => {
+    dispatch({
+      type: 'CART:LOADING_SHIPPING_OPTIONS',
+      loading: true,
+      error: false,
+      message: 'fetching options from database',
+    });
+    axios
+      .get(SHIP_OPTIONS_GET)
+      .then(({ data }) => {
+        dispatch({
+          type: 'CART:RECIEVE_SHIPPING_OPTIONS',
+          loading: false,
+          error: false,
+          message: 'succesfully recieved options',
+          options: data.options,
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: 'CART:ERROR',
+          loading: false,
+          error: true,
+        });
+      });
+  };
+};
+
+export const setShipping = option => ({
+  type: 'CART:SELECT_SHIPPING_OPTION',
+  option,
+});
