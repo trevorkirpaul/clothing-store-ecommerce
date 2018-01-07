@@ -55,3 +55,30 @@ Order history is another feature but that will be pretty simple.
 I just circumvented using the redundant second layer of `Product` and directly saved the price and quantity on the the `CartItem` model iteself. I'm no longer having any issues and I now feel like it's correclty solved.
 
 I still can't get the array method `reduce()` to work but the forEach loop works.
+
+### Jan 7th, 2018
+
+It's hard to be specific or explain this correctly but I'm feeling more comfortable with managing and manipulating state.
+
+This involves client actions, such as when the client clicks a button to submit info to the database, when it gets back and when the client confirms everything. This also involved loading and correctly settting up checkpoints to figure out what information should be displayed and when.
+
+A couple months ago I didn't really understand nor was aware of the depth regarding making an app usable with loading indicators. It's now something that I understand and can reason about in detail in my head. It's more than just knowing how it works but also understanding how to use it exactly.
+
+There's still so much I need to refine but this is something that is both a small detail and crucial to my understanding of programming.
+
+Regarding this app, a user can now:
+
+1. Sign in
+2. Select and add a product to their cart (which is saved to the database)
+3. select a shipping method (saved to redux state)
+4. Enter a promo code (saved to the database)
+5. review the order with the price calculated according to shipping and discounts
+6. Submit the order and recieve a confirmation
+
+There are a few small things which I want to do, like tracking promo codes used as to prevent re-use. I also need to flesh out the sign in/out component views and I need to implement a CreateUser component.
+
+I do want to implement a confirmation e-mail being sent by the backend upon submitting an order. I don't believe this will be complicated at all.
+
+I originally planned to use the Stripe API and use dummy CC info. Currently I'm circumventing this process and now payment info is being tracked. This would be a big feature to implement so It'll be somethine to consider closer to the end.
+
+A lot of styling has to be done overall as well so I still have much work to do. I am very happy with the app and progress made so far.
