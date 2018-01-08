@@ -9,7 +9,7 @@ import Welcome from '../welcome/Welcome';
 import Products from '../products/ProductsContainer';
 import Product from '../productItem/ProductItemContainer';
 import SignUp from '../sign_up/SignUpContainer';
-import SignIn from '../sign_in/SignIn';
+import SignIn from '../sign_in/SignInContainer';
 import SignInConfirm from '../confirmations/SignInConfirm';
 import SignOutConfirm from '../confirmations/SignOutConfirm';
 import SignOut from '../sign_out/SignOutContainer';
