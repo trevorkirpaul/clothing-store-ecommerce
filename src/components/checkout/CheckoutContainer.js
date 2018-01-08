@@ -58,7 +58,7 @@ export class CheckoutContainer extends Component {
     this.setState({ open: false, complete: false, loading: false });
     this.props.clear();
 
-    // this.props.history.push('/');
+    this.props.history.push('/thankyou');
   };
   componentDidMount() {
     // check if cart props exits, then generate total price

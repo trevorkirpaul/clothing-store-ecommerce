@@ -29,7 +29,20 @@ export const create = ({ userID, cartItems, discount, shipping }) => {
   };
 };
 
-export const clear = () => ({
-  type: 'CHECKOUT:CLIENT_CONFIRM',
-  order: null,
-});
+// this is dispatched after order is submit in CHeckoutContainer
+// when user clicks ok in the dialog popup
+// this resets all local state to before cartItems added
+// or shipping selected
+// NOTE: promoCode is pulled from DB so we ignore that
+export const clear = () => {
+  return dispatch => {
+    dispatch({
+      type: 'CHECKOUT:CLIENT_CONFIRM',
+      order: false,
+    });
+    dispatch({
+      type: 'CART:CLEAR_SHIPPING_OPTION',
+      option: false,
+    });
+  };
+};

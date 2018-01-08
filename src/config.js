@@ -6,6 +6,7 @@ export const API = {
   TOKEN: `${url}/`,
 };
 
+export const CREA_USER = `${url}/api/users`;
 export const SIGN_IN = `${url}/api/users/signin`;
 export const TOKEN = `${url}/`;
 export const CART_GET = `${url}/api/cart`;

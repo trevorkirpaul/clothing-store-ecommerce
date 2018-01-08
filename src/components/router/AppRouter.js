@@ -12,6 +12,7 @@ import SignIn from '../sign_in/SignIn';
 import SignInConfirm from '../confirmations/SignInConfirm';
 import SignOutConfirm from '../confirmations/SignOutConfirm';
 import SignOut from '../sign_out/SignOut';
+import ThankYou from '../ThankYou/ThankYou';
 import NotFound from '../notFound/NotFound';
 import CheckAuth from '../HoC/CheckAuth';
 import VerifyShippingExists from '../HoC/VerifyShippingExists';
@@ -35,6 +36,7 @@ export default () => {
           <Route exact path="/signout" component={CheckAuth(SignOut)} />
           <Route exact path="/confirm/signin" component={SignInConfirm} />
           <Route exact path="/confirm/signout" component={SignOutConfirm} />
+          <Route exact path="/thankyou" component={ThankYou} />
           <Route component={NotFound} />
         </Switch>
       </div>

@@ -80,6 +80,12 @@ export default (state = defaultState, action) => {
         ...state,
         shippingOption: action.option,
       };
+
+    case 'CART:CLEAR_SHIPPING_OPTION':
+      return {
+        ...state,
+        shippingOption: action.option,
+      };
     case 'CART:ERROR':
       return {
         ...state,
