@@ -3,8 +3,6 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import AppRouter from './components/router/AppRouter';
 import { tokenAuth } from './actions/auth';
-import { getCart } from './actions/cart';
-import { getAllProducts } from './actions/products';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const store = configureStore();
@@ -15,8 +13,6 @@ class App extends Component {
     const token = localStorage.getItem('token');
     if (token) {
       store.dispatch(tokenAuth(token));
-      // store.dispatch(getCart(token));
-      // store.dispatch(getAllProducts());
     }
   }
   render() {

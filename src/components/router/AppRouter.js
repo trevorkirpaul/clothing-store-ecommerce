@@ -12,7 +12,7 @@ import SignUp from '../sign_up/SignUpContainer';
 import SignIn from '../sign_in/SignIn';
 import SignInConfirm from '../confirmations/SignInConfirm';
 import SignOutConfirm from '../confirmations/SignOutConfirm';
-import SignOut from '../sign_out/SignOut';
+import SignOut from '../sign_out/SignOutContainer';
 import ThankYou from '../ThankYou/ThankYou';
 import NotFound from '../notFound/NotFound';
 import CheckAuth from '../HoC/CheckAuth';
