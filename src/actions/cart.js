@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { CART_GET, CHECK_CODE, REMOVE_CODE, SHIP_OPTIONS_GET } from '../config';
 
-const tokenObject = {
-  headers: {
-    authorization: localStorage.getItem('token'),
-  },
-};
+// const tokenObject = {
+//   headers: {
+//     authorization: localStorage.getItem('token'),
+//   },
+// };
 
 export const getCart = token => {
   return dispatch => {
@@ -14,7 +14,7 @@ export const getCart = token => {
       loading: true,
     });
     axios
-      .get(CART_GET, tokenObject)
+      .get(CART_GET, token)
       .then(({ data }) => {
         dispatch({
           type: 'CART:RECIEVE_CART',

@@ -15,8 +15,8 @@ class App extends Component {
     const token = localStorage.getItem('token');
     if (token) {
       store.dispatch(tokenAuth(token));
-      store.dispatch(getCart(token));
-      store.dispatch(getAllProducts());
+      // store.dispatch(getCart(token));
+      // store.dispatch(getAllProducts());
     }
   }
   render() {

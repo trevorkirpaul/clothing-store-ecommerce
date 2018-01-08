@@ -90,7 +90,12 @@ export class CartContainer extends Component {
     this.props.removePromoCode(userID);
   };
   componentDidMount() {
-    this.props.getCart();
+    const tokenObject = {
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    };
+    this.props.getCart(tokenObject);
     this.props.getShippingOptions();
   }
   componentWillReceiveProps(nextProps) {
@@ -140,7 +145,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCart: () => dispatch(getCart()),
+  getCart: token => dispatch(getCart(token)),
   removeItem: item => dispatch(removeItem(item)),
   checkPromoCode: (codePhrase, userID) =>
     dispatch(checkPromoCode(codePhrase, userID)),

@@ -56,6 +56,7 @@ export const signIn = (email, password) => {
           auth: {
             token: data.token,
             loading: false,
+            id: data.id,
           },
         });
       })
@@ -107,6 +108,7 @@ export const signUp = (email, password) => {
             loading: false,
             error: false,
             token: data.token,
+            id: data.id,
           },
         });
       })
