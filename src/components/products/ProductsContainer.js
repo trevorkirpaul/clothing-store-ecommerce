@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/cartItem';
+import { getAllProducts } from '../../actions/products';
 import Products from './Products';
 
 export class ProductsContainer extends Component {
@@ -12,14 +13,16 @@ export class ProductsContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState(() => ({
-      products: this.props.products.items,
-    }));
+    this.props.getProducts();
   }
   componentWillReceiveProps(nextProps) {
-    this.setState(() => ({
-      products: nextProps.products.items,
-    }));
+    const products = nextProps.products;
+    if (products.items) {
+      const contents = products.items;
+      this.setState(() => ({
+        products: contents,
+      }));
+    }
   }
   render() {
     return <Products products={this.state.products} />;
@@ -33,6 +36,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item)),
+  getProducts: () => dispatch(getAllProducts()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

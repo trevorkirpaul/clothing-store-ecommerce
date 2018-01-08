@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGN_IN, TOKEN } from '../config';
+import { SIGN_IN, TOKEN, CREA_USER } from '../config';
 
 const tokenObject = {
   headers: {
@@ -86,5 +86,38 @@ export const signOut = () => {
         token: null,
       },
     });
+  };
+};
+
+export const signUp = (email, password) => {
+  return dispatch => {
+    dispatch({
+      type: 'AUTH:CLICKED_SIGN_UP',
+      auth: {
+        loading: true,
+      },
+    });
+    axios
+      .post(CREA_USER, { email, password })
+      .then(({ data }) => {
+        localStorage.setItem('token', data.token);
+        dispatch({
+          type: 'AUTH:SUCCESSFUL_SIGN_IN',
+          auth: {
+            loading: false,
+            error: false,
+            token: data.token,
+          },
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: 'AUTH:FAILED_SIGN_UP',
+          auth: {
+            error: error.response.data.error,
+            loading: false,
+          },
+        });
+      });
   };
 };

@@ -27,6 +27,9 @@ export default ({ loggedIn }) => {
         <Link to="/signin">
           <FlatButton label="Sign In" style={style} />
         </Link>
+        <Link to="/signup">
+          <FlatButton label="Sign Up" style={style} />
+        </Link>
       </Wrapper>
     );
   } else if (loggedIn) {
