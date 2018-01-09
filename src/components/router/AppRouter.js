@@ -9,6 +9,7 @@ import Welcome from '../welcome/Welcome';
 import Products from '../products/ProductsContainer';
 import Product from '../productItem/ProductItemContainer';
 import SignUp from '../sign_up/SignUpContainer';
+import SignUpConfirm from '../confirmations/SignUpConfirm';
 import SignIn from '../sign_in/SignInContainer';
 import SignInConfirm from '../confirmations/SignInConfirm';
 import SignOutConfirm from '../confirmations/SignOutConfirm';
@@ -17,6 +18,8 @@ import ThankYou from '../ThankYou/ThankYou';
 import NotFound from '../notFound/NotFound';
 import CheckAuth from '../HoC/CheckAuth';
 import VerifyShippingExists from '../HoC/VerifyShippingExists';
+import VerifyEmail from '../confirmations/VerifyEmailContainer';
+import UnverifiedEmail from '../confirmations/UnverifiedEmail';
 
 export default () => {
   return (
@@ -36,8 +39,15 @@ export default () => {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signout" component={CheckAuth(SignOut)} />
+          <Route exact path="/token/:token" component={VerifyEmail} />
           <Route exact path="/confirm/signin" component={SignInConfirm} />
           <Route exact path="/confirm/signout" component={SignOutConfirm} />
+          <Route
+            exact
+            path="/error/unverified-email"
+            component={UnverifiedEmail}
+          />
+          <Route exact path="/confirm/signup" component={SignUpConfirm} />
           <Route exact path="/thankyou" component={ThankYou} />
           <Route component={NotFound} />
         </Switch>

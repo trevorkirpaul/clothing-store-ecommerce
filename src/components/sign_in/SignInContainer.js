@@ -29,6 +29,14 @@ export class SignInContainer extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
+    const auth = nextProps.auth;
+
+    // if servers response tells us
+    // account email is unverefied
+    if (auth.unverifiedEmail) {
+      this.props.history.push('/error/unverified-email');
+    }
+
     if (nextProps.token) {
       this.props.getCart(tokenObject(nextProps.token));
       this.props.history.push('/confirm/signin');
@@ -49,6 +57,7 @@ export class SignInContainer extends Component {
 
 const mapStateToProps = state => ({
   token: state.auth.token,
+  auth: state.auth,
 });
 
 const mapDispatchToProps = dispatch => ({

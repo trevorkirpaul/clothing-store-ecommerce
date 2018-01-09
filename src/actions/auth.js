@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGN_IN, TOKEN, CREA_USER } from '../config';
+import { SIGN_IN, TOKEN, CREA_USER, VERIFY_EMAIL } from '../config';
 
 const tokenObject = {
   headers: {
@@ -49,16 +49,27 @@ export const signIn = (email, password) => {
     axios
       .post(SIGN_IN, { email, password })
       .then(({ data }) => {
-        // if valid
-        localStorage.setItem('token', data.token);
-        dispatch({
-          type: 'AUTH:SUCCESSFUL_SIGN_IN',
-          auth: {
-            token: data.token,
-            loading: false,
-            id: data.id,
-          },
-        });
+        // if verified email & account
+        if (data.active === true) {
+          localStorage.setItem('token', data.token);
+          dispatch({
+            type: 'AUTH:SUCCESSFUL_SIGN_IN',
+            auth: {
+              token: data.token,
+              loading: false,
+              id: data.id,
+            },
+          });
+        } else {
+          dispatch({
+            type: 'AUTH:FAILED_EMAIL_UNVERIFIED',
+            auth: {
+              loading: false,
+              error: false,
+              unverifiedEmail: true,
+            },
+          });
+        }
       })
       .catch(() => {
         dispatch({
@@ -101,14 +112,13 @@ export const signUp = (email, password) => {
     axios
       .post(CREA_USER, { email, password })
       .then(({ data }) => {
-        localStorage.setItem('token', data.token);
         dispatch({
-          type: 'AUTH:SUCCESSFUL_SIGN_IN',
+          type: 'AUTH:SUCCESSFUL_ACCOUNT_CREATION',
           auth: {
             loading: false,
             error: false,
-            token: data.token,
-            id: data.id,
+            message: data.message,
+            accountCreated: data.accountCreated,
           },
         });
       })
@@ -118,6 +128,40 @@ export const signUp = (email, password) => {
           auth: {
             error: error.response.data.error,
             loading: false,
+          },
+        });
+      });
+  };
+};
+
+export const verifyEmail = token => {
+  return dispatch => {
+    dispatch({
+      type: 'AUTH:BEGIN_VERIFY_EMAIL',
+      auth: {
+        loading: true,
+      },
+    });
+    axios
+      .post(VERIFY_EMAIL, { token })
+      .then(({ data }) => {
+        dispatch({
+          type: 'AUTH:SUCCESSFUL_VERIFY_EMAIL',
+          auth: {
+            loading: false,
+            error: false,
+            token: data.token,
+            id: data.id,
+            message: data.message,
+          },
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: 'AUTH:FAILED_VERIFY_EMAIL',
+          auth: {
+            loading: false,
+            error: false,
           },
         });
       });

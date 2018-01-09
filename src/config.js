@@ -19,3 +19,4 @@ export const CHECK_CODE = `${url}/api/promo-code`;
 export const REMOVE_CODE = `${url}/api/promo-remove`;
 export const CHECKOUT = `${url}/api/checkout`;
 export const SHIP_OPTIONS_GET = `${url}/api/shipping`;
+export const VERIFY_EMAIL = `${url}/api/users/verify`;

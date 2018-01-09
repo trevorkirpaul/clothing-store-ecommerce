@@ -10,8 +10,8 @@ export class SignUpContainer extends Component {
   };
   componentWillReceiveProps(nextProps) {
     const auth = nextProps.auth;
-    if (auth.token) {
-      this.props.history.push('/');
+    if (auth.accountCreated) {
+      this.props.history.push('/confirm/signup');
     }
   }
   render() {
