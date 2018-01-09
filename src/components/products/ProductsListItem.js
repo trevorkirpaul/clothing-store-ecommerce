@@ -2,31 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PROD_IMAGE } from '../../config';
 import styled from 'styled-components';
-import Paper from 'material-ui/Paper';
 
-const Wrapper = styled(Paper)`
-  margin: 15px 5px;
-  padding: 25px;
+const Wrapper = styled.div`
   /* text-decoration: none; */
+  padding: 0;
+  margin: 0;
+  position: relative;
 `;
 
 const Title = styled.h2`
+  display: inline-block;
+  background: #f8f8f8;
+  padding: 5px 10px;
   color: #383838;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 2em;
   margin: 0;
   /* text-decoration: none; */
 `;
-// const Price = styled.span`
-//   /* text-decoration: none; */
-//   font-size: 2em;
-//   font-family: 'Permanent Marker', cursive;
-//   font-weight: 400;
-// `;
+
 const IMG = styled.img`
   width: 100%;
-  margin-bottom: 10px;
+  height: 350px;
+  object-fit: cover;
+  /* margin-bottom: 10px; */
   /* height: 100%; */
 `;
 const LINK = styled(Link)`
@@ -36,6 +36,9 @@ const Details = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: absolute;
+  top: 20%;
+  left: 20%;
 `;
 
 export default ({ id, name, image, price }) => {

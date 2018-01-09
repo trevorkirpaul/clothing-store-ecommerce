@@ -1,26 +1,25 @@
 import React from 'react';
 import ProductsListItem from './ProductsListItem';
 import styled from 'styled-components';
-import Paper from 'material-ui/Paper';
 
 const Wrapper = styled.div``;
 const ListWrapper = styled.ul`
-  padding: 5px;
-  max-width: 900px;
-  margin: 10px auto;
+  padding: 0px;
+  margin: 0;
+  padding: 0;
   list-style: none;
   /* text-decoration: none; */
 `;
-const Panel = styled(Paper)`
+const TitlePanel = styled.div`
   padding: 25px;
-  max-width: 900px;
-  margin: 10px auto;
+  background: #f2b9b9;
+
   text-align: center;
 `;
 const Title = styled.h1`
   /* font-family: 'Roboto', sans-serif; */
-  font-family: 'Permanent Marker', cursive;
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   color: #383838;
   font-size: 3em;
   margin: 0;
@@ -28,9 +27,9 @@ const Title = styled.h1`
 export default ({ products }) => {
   return (
     <Wrapper>
-      <Panel>
+      <TitlePanel>
         <Title>2018 Catalog</Title>
-      </Panel>
+      </TitlePanel>
       <ListWrapper>
         {products.map(item => (
           <ProductsListItem

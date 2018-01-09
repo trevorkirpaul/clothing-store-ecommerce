@@ -82,3 +82,23 @@ I do want to implement a confirmation e-mail being sent by the backend upon subm
 I originally planned to use the Stripe API and use dummy CC info. Currently I'm circumventing this process and now payment info is being tracked. This would be a big feature to implement so It'll be somethine to consider closer to the end.
 
 A lot of styling has to be done overall as well so I still have much work to do. I am very happy with the app and progress made so far.
+
+### Jan 8th 2018
+
+I've finished styling all of the componenents save a few loading indicators. I also set up nodemailer on the backend and the app now sends a comfirmation email to the user upon submitting an order. I did some refactoring in major components, the products now fetch on component mount and the cart fetches on mount as well.
+
+I spent some time also fetching the cart when the header loads, so I could track the cart length and display the number on the cart button in the nav. I got this working fine but realized that since I don't keep a loval state of the cart then I'd have to re-fetch the cart to update the length when an item is added.
+
+I decided early on not to use loacl state to track the cart and to have the database be the only source of truth. In the past, like the Bartr app, I did it the convential way where I have local state in redux and the db state. I may implement redux state for the cart but I pulled back on the feature for now.
+
+I spent a lot of time today really cleaning up a lot of the features and the app experience. Tomorrow I'll deploy it although I still need to do a bit more streamlining.
+
+I want to create an account sign up comfirmation feature. I think it'll be somewhat simple as I have everything set up already. This, along with a message on the sign up component, will ensure the user has a vali email so they can actually recieve the confirmation email for orders as well.
+
+I don't want to make the testing experience for a random user require too much effort though. Since this is a portfolio piece, I doubt most people will want to deal with all thoses steps just to test my app. I could easliy have a test account already set up and that might be my solution.
+
+I also want to let the user choose if they want to persist the signIn. I realized this is pretty easy. I'll have a boolean that the user chooses which determines whether or not the JWT from the server is saved into localStorage.
+
+I think I'll be done with this app tommorow which means it took me about a week to complete. I think my first portfolio piece took a little longer, not considering the troubles I had learning how to deploy an app and get a SSL cert and use Nginx for my site. My second portfolio piece isn't even done yet but I put a TON of work into that. I basically coded a CMS for an admin. I put that project on pause to actually learn mongoDB in node and after that I worked on this project.
+
+I definitely have the knowledge to finish the TKcomputers app and I'm pretty proud of my progress on all three apps. I think I'll have a strong portfolio once I deploy everything.
