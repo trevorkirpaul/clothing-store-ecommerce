@@ -19,7 +19,7 @@ export default ({ loggedIn }) => {
     return (
       <Wrapper>
         <Link to="/">
-          <FlatButton label="Dirty Rich" />
+          <FlatButton label="Dirty Rich" style={style} />
         </Link>
         <Link to="/products">
           <FlatButton label="Products" style={style} />
@@ -45,7 +45,7 @@ export default ({ loggedIn }) => {
           <FlatButton label="Sign Out" style={style} />
         </Link>
         <Link to="/cart">
-          <FlatButton label="Shopping Cart" style={style} />
+          <FlatButton label={`Shopping Cart`} style={style} />
         </Link>
       </Wrapper>
     );

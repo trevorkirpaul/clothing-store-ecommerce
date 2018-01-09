@@ -67,8 +67,9 @@ export class CheckoutContainer extends Component {
     if (cart) {
       const total = getTotal(cart.contents);
       const shipping = cart.shippingOption.price;
+      const discount = cart.discount.amount === 1 ? 0 : cart.discount.amount;
       this.setState(() => ({
-        total: total - total * cart.discount.amount + shipping,
+        total: total - total * discount + shipping,
       }));
     }
   }

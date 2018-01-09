@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../actions/auth';
+import { getCart } from '../../actions/cart';
 import SignIn from '../forms/AccountActions';
+
+const tokenObject = token => ({
+  headers: {
+    authorization: token,
+  },
+});
 
 export class SignInContainer extends Component {
   constructor(props) {
@@ -23,6 +30,7 @@ export class SignInContainer extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.token) {
+      this.props.getCart(tokenObject(nextProps.token));
       this.props.history.push('/confirm/signin');
     }
   }
@@ -45,6 +53,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   signIn: (email, password) => dispatch(signIn(email, password)),
+  getCart: token => dispatch(getCart(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);

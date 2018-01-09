@@ -4,11 +4,14 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
 const Wrapper = styled.div`
-  padding: 25px;
-  margin: 0;
   background: #f2b9b9;
+`;
+const InnerWrap = styled.div`
+  max-width: 700px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  padding: 25px;
+  justify-content: space-between;
 `;
 const Title = styled.h3`
   font-family: 'Roboto', sans-serif;
@@ -16,6 +19,10 @@ const Title = styled.h3`
 `;
 const BodyText = styled.p`
   color: #383838;
+`;
+
+const RightPane = styled.div`
+  text-align: right;
 `;
 
 export default class DiscountCode extends Component {
@@ -64,12 +71,12 @@ export default class DiscountCode extends Component {
     const { codePhrase, amount } = this.state;
     return (
       <Wrapper>
-        <div>
-          <Title>Discount Code</Title>
-          <BodyText>Enter a secret code to get a secret discount</BodyText>
-        </div>
-        <div>
+        <InnerWrap>
           <div>
+            <Title>Discount Code</Title>
+            <BodyText>Enter a secret code to get a secret discount</BodyText>
+          </div>
+          <RightPane>
             {amount !== 1 ? (
               <div>
                 <p>valid code being used: {codePhrase}</p>
@@ -81,15 +88,17 @@ export default class DiscountCode extends Component {
               </div>
             ) : (
               <div>
-                <TextField
-                  hintText="enter code"
-                  onChange={this.handleChangeCodePhrase}
-                />
+                <div>
+                  <TextField
+                    hintText="enter code"
+                    onChange={this.handleChangeCodePhrase}
+                  />
+                </div>
                 <FlatButton label="check" onClick={this.handleSubmit} />
               </div>
             )}
-          </div>
-        </div>
+          </RightPane>
+        </InnerWrap>
       </Wrapper>
     );
   }

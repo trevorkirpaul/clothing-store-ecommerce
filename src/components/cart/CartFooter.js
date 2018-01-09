@@ -4,37 +4,54 @@ import CheckoutButton from './CheckoutButton';
 
 const Wrapper = styled.div`
   background: #9e9e9e;
-  padding: 25px;
+`;
+const InnerWrap = styled.div`
+  max-width: 700px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  padding: 25px;
+  justify-content: space-between;
+`;
+const Title = styled.h3`
+  font-family: 'Roboto', sans-serif;
+  color: #383838;
+`;
+const BodyText = styled.p`
+  color: #383838;
+  font-family: 'Roboto', sans-serif;
+`;
+const RightPane = styled.div`
+  text-align: right;
 `;
 
 export default ({ total, discount, shipping, history }) => {
   // check if discount code is valid or exists
-  const modifyPrice = discount.codePhrase === null ? 1 : discount.amount;
+  const modifyPrice = discount.amount === 1 ? 0 : discount.amount;
   const price = shipping ? shipping.price : 0;
 
   return (
     <Wrapper>
-      <div>
-        <h3>ESTIMATION:</h3>
-        <p>order: ${total}</p>
-        {discount.codePhrase !== null && (
-          <p>
-            discount code: {discount.codePhrase} for {discount.amount * 100}%
-          </p>
-        )}
-        {shipping && (
-          <p>
-            shipping: {shipping.name} for ${shipping.price}
-          </p>
-        )}
-      </div>
-      <div>
-        <h3>Final Price: ${total - total * modifyPrice + price}</h3>
+      <InnerWrap>
+        <div>
+          <Title>ESTIMATION:</Title>
+          <BodyText>order: ${total}</BodyText>
+          {discount.codePhrase !== null && (
+            <BodyText>
+              discount code: {discount.codePhrase} for {discount.amount * 100}%
+            </BodyText>
+          )}
+          {shipping && (
+            <BodyText>
+              shipping: {shipping.name} for ${shipping.price}
+            </BodyText>
+          )}
+        </div>
+        <RightPane>
+          <Title>Final Price: ${total - total * modifyPrice + price}</Title>
 
-        <CheckoutButton shipping={shipping} />
-      </div>
+          <CheckoutButton shipping={shipping} />
+        </RightPane>
+      </InnerWrap>
     </Wrapper>
   );
 };

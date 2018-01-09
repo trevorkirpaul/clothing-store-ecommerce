@@ -2,10 +2,16 @@ import React from 'react';
 import { PROD_IMAGE } from '../../config';
 import styled from 'styled-components';
 import FlatButton from 'material-ui/FlatButton';
+// import FontIcon from 'material-ui/FontIcon';
+import ColorLens from 'material-ui/svg-icons/image/color-lens';
+import Size from 'material-ui/svg-icons/image/straighten';
+import NumberIcon from 'material-ui/svg-icons/action/shopping-basket';
+import RemoveIcon from 'material-ui/svg-icons/action/remove-shopping-cart';
 
 const Wrapper = styled.li`
   display: flex;
   justify-content: space-between;
+  margin: 10px;
   margin-bottom: 25px;
   padding: 15px;
   border: 1px solid #383838;
@@ -15,6 +21,39 @@ const IMG = styled.img`
   height: 200px;
   object-fit: cover;
 `;
+const BodyText = styled.p`
+  font-family: 'Roboto', sans-serif;
+  color: #383838;
+  font-size: 1em;
+  margin: 0;
+`;
+const TitleText = styled.span`
+  font-size: 1.3em;
+  font-weight: 600;
+`;
+const PriceText = styled.span`
+  font-size: 1.5em;
+  font-weight: 600;
+`;
+const MiddlePane = styled.div`
+  padding-left: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const LastPane = styled.div`
+  padding-left: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+`;
+const iconStyles = {
+  marginRight: '5px',
+  color: '#383838',
+};
 export default ({
   name,
   price,
@@ -30,16 +69,33 @@ export default ({
       <div>
         <IMG src={`${PROD_IMAGE}${imagePath}`} />
       </div>
-      <div>
-        <p>Product Name: {name}</p>
-        <p>Color: {color} </p>
-        <p>Size: {size}</p>
-      </div>
-      <div>
-        <p>Quantity: {quantity}</p>
-        <p>Price: ${price}</p>
-        <FlatButton label="Remove" onClick={() => handleRemove(cartItemID)} />
-      </div>
+      <MiddlePane>
+        <BodyText>
+          <TitleText>Product Name: {name}</TitleText>
+        </BodyText>
+        <BodyText>
+          <ColorLens style={iconStyles} />
+          Color: {color}
+        </BodyText>
+        <BodyText>
+          <Size style={iconStyles} />
+          Size: {size}
+        </BodyText>
+        <BodyText>
+          <NumberIcon style={iconStyles} />
+          Quantity: {quantity}
+        </BodyText>
+      </MiddlePane>
+      <LastPane>
+        <BodyText>
+          <PriceText>Price: ${price}</PriceText>
+        </BodyText>
+        <FlatButton
+          icon={<RemoveIcon />}
+          label="Remove"
+          onClick={() => handleRemove(cartItemID)}
+        />
+      </LastPane>
     </Wrapper>
   );
 };

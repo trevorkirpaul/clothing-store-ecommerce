@@ -1,12 +1,6 @@
 import axios from 'axios';
 import { CART_GET, CHECK_CODE, REMOVE_CODE, SHIP_OPTIONS_GET } from '../config';
 
-// const tokenObject = {
-//   headers: {
-//     authorization: localStorage.getItem('token'),
-//   },
-// };
-
 export const getCart = token => {
   return dispatch => {
     dispatch({
