@@ -13,6 +13,9 @@ const InnerWrap = styled.div`
   display: flex;
   padding: 25px;
   justify-content: space-between;
+  @media (max-with: 450px) {
+    display: block;
+  }
 `;
 const BodyText = styled.p``;
 

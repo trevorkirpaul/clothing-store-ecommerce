@@ -1,5 +1,5 @@
-const url = 'http://192.168.1.137:5000';
-// const url = 'https://rocky-anchorage-12632.herokuapp.com';
+// const url = 'http://192.168.1.137:5000';
+const url = 'https://rocky-anchorage-12632.herokuapp.com';
 
 export const API = {
   MAIN: `${url}`,
@@ -9,7 +9,7 @@ export const API = {
 
 export const CREA_USER = `${url}/api/users`;
 export const SIGN_IN = `${url}/api/users/signin`;
-export const TOKEN = `${url}/`;
+export const TOKEN = `${url}/auth`;
 export const CART_GET = `${url}/api/cart`;
 export const PROD_GET_ALL = `${url}/api/products`;
 export const CART_ADD = `${url}/api/cartItem/add`;

@@ -10,6 +10,9 @@ const Wrapper = styled(Paper)`
   padding: 25px;
   max-width: 900px;
   margin: 10px auto;
+  @media (max-width: 450px) {
+    margin: 15px;
+  }
 `;
 const Title = styled.h1`
   font-family: 'Roboto', sans=serif;

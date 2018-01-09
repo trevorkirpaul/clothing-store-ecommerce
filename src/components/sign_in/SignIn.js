@@ -6,6 +6,10 @@ import { signIn } from '../../actions/auth';
 const Wrapper = styled.div`
   margin: 10px auto;
   padding: 15px;
+  @media (max-width: 450px;) {
+    margin: 10px;
+    width: 100%;
+  }
 `;
 
 export class SignIn extends Component {
