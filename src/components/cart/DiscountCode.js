@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import { ScreenSize } from '../../config';
+const mobile = ScreenSize.mobile;
 
 const Wrapper = styled.div`
   background: #f2b9b9;
@@ -12,6 +14,9 @@ const InnerWrap = styled.div`
   display: flex;
   padding: 25px;
   justify-content: space-between;
+  @media (max-width: ${mobile}) {
+    flex-direction: column;
+  }
 `;
 const Title = styled.h3`
   font-family: 'Roboto', sans-serif;

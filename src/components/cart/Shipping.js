@@ -1,8 +1,9 @@
 import React from 'react';
-// import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import styled from 'styled-components';
+import { ScreenSize } from '../../config';
+const mobile = ScreenSize.mobile;
 
 const Wrapper = styled.div`
   background: #e8e8e8;
@@ -11,10 +12,11 @@ const InnerWrap = styled.div`
   max-width: 700px;
   margin: 0 auto;
   display: flex;
+  flex-direction: row;
   padding: 25px;
   justify-content: space-between;
-  @media (max-with: 450px) {
-    display: block;
+  @media (max-width: ${mobile}) {
+    flex-direction: column;
   }
 `;
 const BodyText = styled.p``;

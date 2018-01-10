@@ -4,11 +4,16 @@ import FlatButton from 'material-ui/FlatButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import styled from 'styled-components';
-import Paper from 'material-ui/Paper';
 
-const Wrapper = styled(Paper)`
+import { ScreenSize } from '../../config';
+const mobile = ScreenSize.mobile;
+
+const Wrapper = styled.div`
   padding: 25px;
   margin: 10px 0;
+  @media (max-width: ${mobile}) {
+    /* text-align: center; */
+  }
 `;
 
 // create mat-ui select field for redux-form

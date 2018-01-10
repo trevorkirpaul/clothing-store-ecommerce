@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import CheckoutButton from './CheckoutButton';
+import { ScreenSize } from '../../config';
+const mobile = ScreenSize.mobile;
 
 const Wrapper = styled.div`
   background: #9e9e9e;
@@ -11,6 +13,10 @@ const InnerWrap = styled.div`
   display: flex;
   padding: 25px;
   justify-content: space-between;
+  @media (max-width: ${mobile}) {
+    flex-direction: column;
+    /* text-align: center; */
+  }
 `;
 const Title = styled.h3`
   font-family: 'Roboto', sans-serif;

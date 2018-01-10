@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   justify-content: space-around;
   padding: 5px 5px;
   background: #383838;
+
   @media (max-width: 450px) {
     flex-wrap: wrap;
   }
