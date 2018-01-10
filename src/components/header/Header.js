@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import MobileMenu from './MobileMenu';
 import FlatButton from 'material-ui/FlatButton';
 
 const style = {
@@ -16,40 +17,72 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
   }
 `;
+const FullSizeActions = styled.div`
+  @media (max-width: 450px) {
+    display: none;
+  }
+`;
+
+const MobileActions = styled.div`
+  @media (min-width: 450px) {
+    display: none;
+  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px;
+`;
 
 export default ({ loggedIn }) => {
   if (!loggedIn) {
     return (
       <Wrapper>
-        <Link to="/">
-          <FlatButton label="Dirty Rich" style={style} />
-        </Link>
-        <Link to="/products">
-          <FlatButton label="Products" style={style} />
-        </Link>
-        <Link to="/signin">
-          <FlatButton label="Sign In" style={style} />
-        </Link>
-        <Link to="/signup">
-          <FlatButton label="Sign Up" style={style} />
-        </Link>
+        <FullSizeActions>
+          <Link to="/">
+            <FlatButton label="Dirty Rich" style={style} />
+          </Link>
+          <Link to="/products">
+            <FlatButton label="Products" style={style} />
+          </Link>
+          <Link to="/signin">
+            <FlatButton label="Sign In" style={style} />
+          </Link>
+          <Link to="/signup">
+            <FlatButton label="Sign Up" style={style} />
+          </Link>
+        </FullSizeActions>
+        <MobileActions>
+          <Link to="/">
+            <FlatButton label="Dirty Rich" style={style} />
+          </Link>
+          <MobileMenu signedIn={false} />
+        </MobileActions>
       </Wrapper>
     );
   } else if (loggedIn) {
     return (
       <Wrapper>
-        <Link to="/">
-          <FlatButton label="Dirty Rich" style={style} />
-        </Link>
-        <Link to="/products">
-          <FlatButton label="Products" style={style} />
-        </Link>
-        <Link to="/signout">
-          <FlatButton label="Sign Out" style={style} />
-        </Link>
-        <Link to="/cart">
-          <FlatButton label={`Shopping Cart`} style={style} />
-        </Link>
+        <FullSizeActions>
+          <Link to="/">
+            <FlatButton label="Dirty Rich" style={style} />
+          </Link>
+          <Link to="/products">
+            <FlatButton label="Products" style={style} />
+          </Link>
+          <Link to="/signout">
+            <FlatButton label="Sign Out" style={style} />
+          </Link>
+          <Link to="/cart">
+            <FlatButton label={`Shopping Cart`} style={style} />
+          </Link>
+        </FullSizeActions>
+        <MobileActions>
+          <Link to="/">
+            <FlatButton label="Dirty Rich" style={style} />
+          </Link>
+          <MobileMenu signedIn={true} />
+        </MobileActions>
       </Wrapper>
     );
   }
