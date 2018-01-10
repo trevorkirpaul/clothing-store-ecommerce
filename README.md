@@ -102,3 +102,17 @@ I also want to let the user choose if they want to persist the signIn. I realize
 I think I'll be done with this app tommorow which means it took me about a week to complete. I think my first portfolio piece took a little longer, not considering the troubles I had learning how to deploy an app and get a SSL cert and use Nginx for my site. My second portfolio piece isn't even done yet but I put a TON of work into that. I basically coded a CMS for an admin. I put that project on pause to actually learn mongoDB in node and after that I worked on this project.
 
 I definitely have the knowledge to finish the TKcomputers app and I'm pretty proud of my progress on all three apps. I think I'll have a strong portfolio once I deploy everything.
+
+### Jan 10th 2018
+
+I had some issues deploying but they were simple mistakes, such as the app referring to variables inside an uncommited js file. I got the backend deployed on heroku and react frontend is sitting on my vps. I also connected the backend to Mlab isntead of running mongoDB on my vps.
+
+Since then, I've added in a lot of mobile styling. I also discovered that if a user has a token in localStorage, then depending on server speed (and with heroku, if the server is waking), the app will be dispatching a signIn without letting the user know.
+
+This was a simple fix, I added a component with modal, if there is a token in storage then I already was calling a dispatch that set `loading` to true so I used that boolean to trigger the modal.
+
+I also set up a hamburger menu for mobile screens. It was pretty simple since I'm using mat-ui.
+
+I'm relly just trying to tie up loose ends for now.
+
+Something that has come to my attention was a video that I recently saw about the negatives of dispatching from lifecycle methods. I think I need to get a better grasp on how I'm managing state and passing props down the line. I know I can improve how this app makes http requests and it'll take some effort. I've already noted how I don't really like my approach to managing the user shopping cart and this is a great oppertunity to address that.
