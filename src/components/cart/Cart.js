@@ -58,9 +58,9 @@ export default ({ cart, handleRemove }) => {
     }
   } else {
     return (
-      <div>
-        <p>loading...</p>
-      </div>
+      <Wrapper>
+        <CircularProgress />
+      </Wrapper>
     );
   }
 };
