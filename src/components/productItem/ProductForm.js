@@ -1,10 +1,14 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import FlatButton from 'material-ui/FlatButton';
+import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import styled from 'styled-components';
-
+import AddCartIcon from 'material-ui/svg-icons/action/add-shopping-cart';
+import ColorIcon from 'material-ui/svg-icons/image/color-lens';
+import SizeIcon from 'material-ui/svg-icons/image/straighten';
+import QuantityIcon from 'material-ui/svg-icons/action/shopping-basket';
 import { ScreenSize } from '../../config';
 const mobile = ScreenSize.mobile;
 
@@ -12,8 +16,18 @@ const Wrapper = styled.div`
   padding: 25px;
   margin: 10px 0;
   @media (max-width: ${mobile}) {
-    /* text-align: center; */
+    text-align: center;
   }
+`;
+const WarningText = styled.p`
+  font-family: 'Roboto', sans-serif;
+  color: red;
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  border-bottom: 1px solid #383838;
+  color: #383838;
 `;
 
 // create mat-ui select field for redux-form
@@ -34,13 +48,22 @@ export const renderSelectField = ({
     {...custom}
   />
 );
-
-const ProductForm = ({ colors, sizes, handleSubmit }) => {
+// style fro SVG icons
+const iconOpt = {
+  color: '#383838',
+  position: 'relative',
+  top: '5px',
+  marginRight: '.5em',
+};
+// userID is used to toggle functionality for button to add item to cart
+const ProductForm = ({ colors, sizes, handleSubmit, userID }) => {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Color:</label>
+          <label>
+            <ColorIcon style={iconOpt} /> Color:
+          </label>
           <div>
             <Field name="color" component={renderSelectField}>
               <MenuItem />
@@ -52,7 +75,9 @@ const ProductForm = ({ colors, sizes, handleSubmit }) => {
         </div>
 
         <div>
-          <label>Size:</label>
+          <label>
+            <SizeIcon style={iconOpt} /> Size:
+          </label>
           <div>
             <Field name="size" component={renderSelectField}>
               <MenuItem />
@@ -64,7 +89,9 @@ const ProductForm = ({ colors, sizes, handleSubmit }) => {
         </div>
 
         <div>
-          <label>Quantity:</label>
+          <label>
+            <QuantityIcon style={iconOpt} /> Quantity:
+          </label>
           <div>
             <Field name="quantity" component={renderSelectField}>
               <MenuItem />
@@ -77,7 +104,20 @@ const ProductForm = ({ colors, sizes, handleSubmit }) => {
 
         <br />
 
-        <FlatButton primary={true} type="submit" label="Add To Cart" />
+        <RaisedButton
+          icon={<AddCartIcon />}
+          primary={true}
+          type="submit"
+          label="Add To Cart"
+          disabled={!userID}
+        />
+        {!userID && (
+          <WarningText>
+            Please <StyledLink to="/signin"> Sign In </StyledLink> or
+            <StyledLink to="/signup"> Sign Up </StyledLink> to add this to your
+            cart
+          </WarningText>
+        )}
       </form>
     </Wrapper>
   );

@@ -71,6 +71,7 @@ export class ProductItemContainer extends Component {
             {...this.props.product}
             onSubmit={this.handleSubmit}
             btnLbl="label for button"
+            userID={this.props.userID}
           />
 
           <Dialog
