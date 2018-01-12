@@ -1,25 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PROD_IMAGE } from '../../config';
+import RaisedButton from 'material-ui/RaisedButton';
+import { PROD_IMAGE, ScreenSize } from '../../config';
 import styled from 'styled-components';
+import Paper from 'material-ui/Paper';
+const mobile = ScreenSize.mobile;
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   /* text-decoration: none; */
-  padding: 0;
-  margin: 0;
+  /* padding: 5px; */
+  margin: 15px;
   position: relative;
+  flex: 40%;
+  @media (max-width: ${mobile}) {
+    flex: 100%;
+  }
 `;
 
-const Title = styled.h2`
-  display: inline-block;
-  background: #f8f8f8;
-  padding: 5px 10px;
-  color: #383838;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 2em;
-  margin: 0;
-  /* text-decoration: none; */
+const Card = styled(Paper)`
+  padding: 25px;
 `;
 
 const IMG = styled.img`
@@ -29,27 +28,34 @@ const IMG = styled.img`
   /* margin-bottom: 10px; */
   /* height: 100%; */
 `;
-const LINK = styled(Link)`
-  text-decoration: none;
-`;
+
 const Details = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  position: absolute;
-  top: 20%;
-  left: 20%;
+  justify-content: space-between;
+`;
+const Title = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  color: #383838;
+`;
+const Price = styled.p`
+  font-family: 'Roboto', sans-serif;
+  color: #383838;
 `;
 
 export default ({ id, name, image, price }) => {
   return (
-    <LINK to={`/product/${id}`}>
-      <Wrapper>
+    <Wrapper>
+      <Card>
         <IMG src={`${PROD_IMAGE}${image}`} />
         <Details>
           <Title>{name}</Title>
+          <Price>${price}</Price>
         </Details>
-      </Wrapper>
-    </LINK>
+        <Link to={`/product/${id}`}>
+          <RaisedButton label="view item" />
+        </Link>
+      </Card>
+    </Wrapper>
   );
 };
