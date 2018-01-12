@@ -10,13 +10,17 @@ const Panel = styled.div`
   max-width: 900px;
   margin: 0 auto;
 `;
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
 
 export default ({ cart }) => {
   if (cart) {
     return (
       <Wrapper>
         <Panel>
-          <ul>
+          <List>
             {cart.map(item => (
               <ReviewItem
                 key={item._id}
@@ -26,7 +30,7 @@ export default ({ cart }) => {
                 quantity={item.quantity}
               />
             ))}
-          </ul>
+          </List>
         </Panel>
       </Wrapper>
     );

@@ -19,6 +19,10 @@ const Wrapper = styled.div`
     text-align: center;
   }
 `;
+const WarningWrapper = styled.div`
+  padding: 5px;
+  margin: 5px;
+`;
 const WarningText = styled.p`
   font-family: 'Roboto', sans-serif;
   color: red;
@@ -112,11 +116,13 @@ const ProductForm = ({ colors, sizes, handleSubmit, userID }) => {
           disabled={!userID}
         />
         {!userID && (
-          <WarningText>
-            Please <StyledLink to="/signin"> Sign In </StyledLink> or
-            <StyledLink to="/signup"> Sign Up </StyledLink> to add this to your
-            cart
-          </WarningText>
+          <WarningWrapper>
+            <WarningText>
+              Please <StyledLink to="/signin"> Sign In </StyledLink> or
+              <StyledLink to="/signup"> Sign Up </StyledLink> to add this to
+              your cart
+            </WarningText>
+          </WarningWrapper>
         )}
       </form>
     </Wrapper>

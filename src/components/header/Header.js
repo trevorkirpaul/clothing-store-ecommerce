@@ -41,7 +41,7 @@ export default ({ loggedIn }) => {
       <Wrapper>
         <FullSizeActions>
           <Link to="/">
-            <FlatButton label="Dirty Rich" style={style} />
+            <FlatButton label="Home" style={style} />
           </Link>
           <Link to="/products">
             <FlatButton label="Products" style={style} />
@@ -66,7 +66,7 @@ export default ({ loggedIn }) => {
       <Wrapper>
         <FullSizeActions>
           <Link to="/">
-            <FlatButton label="Dirty Rich" style={style} />
+            <FlatButton label="home" style={style} />
           </Link>
           <Link to="/products">
             <FlatButton label="Products" style={style} />
